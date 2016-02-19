@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core.analysis.statistic="http://isa.us.es/sedl/core/analysis/statistic" xmlns:StatCharts.es.us.isa.sedl.module.statcharts="http:///StatCharts/es/us/isa/sedl/module/statcharts.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="StatCharts.es.us.isa.sedl.module.statcharts" ecore:package="StatCharts.es.us.isa.sedl.module.statcharts" targetNamespace="http:///StatCharts/es/us/isa/sedl/module/statcharts.ecore">
+  <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/analysis/statistic" schemaLocation="http://isa.us.es/sedl/core/analysis/statistic"/>
+  <xsd:element ecore:ignore="true" name="StatisticalChart" type="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChart"/>
+  <xsd:element ecore:ignore="true" name="Histogram" type="StatCharts.es.us.isa.sedl.module.statcharts:Histogram"/>
+  <xsd:element ecore:ignore="true" name="ScatterPlot" type="StatCharts.es.us.isa.sedl.module.statcharts:ScatterPlot"/>
+  <xsd:element ecore:ignore="true" name="BoxPlot" type="StatCharts.es.us.isa.sedl.module.statcharts:BoxPlot"/>
+  <xsd:element ecore:ignore="true" name="PieChart" type="StatCharts.es.us.isa.sedl.module.statcharts:PieChart"/>
+  <xsd:element ecore:ignore="true" name="HistogramResult" type="StatCharts.es.us.isa.sedl.module.statcharts:HistogramResult"/>
+  <xsd:element ecore:ignore="true" name="StatisticalChartResult" type="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChartResult"/>
+  <xsd:element ecore:ignore="true" name="ScatterPlotResult" type="StatCharts.es.us.isa.sedl.module.statcharts:ScatterPlotResult"/>
+  <xsd:element ecore:ignore="true" name="Serie" type="StatCharts.es.us.isa.sedl.module.statcharts:Serie"/>
+  <xsd:element ecore:ignore="true" name="BoxPlotResult" type="StatCharts.es.us.isa.sedl.module.statcharts:BoxPlotResult"/>
+  <xsd:element ecore:ignore="true" name="SerieBox" type="StatCharts.es.us.isa.sedl.module.statcharts:SerieBox"/>
+  <xsd:element ecore:ignore="true" name="Outlier" type="StatCharts.es.us.isa.sedl.module.statcharts:Outlier"/>
+  <xsd:element ecore:ignore="true" name="PieChartResult" type="StatCharts.es.us.isa.sedl.module.statcharts:PieChartResult"/>
+  <xsd:complexType name="StatisticalChart">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Histogram">
+    <xsd:complexContent>
+      <xsd:extension base="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChart">
+        <xsd:attribute ecore:unsettable="false" name="nBins" type="types:Integer" use="required"/>
+        <xsd:attribute ecore:unsettable="false" name="sigmaBands" type="types:Boolean" use="required"/>
+        <xsd:attribute ecore:unsettable="false" name="normalDistribution" type="types:Boolean" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ScatterPlot">
+    <xsd:complexContent>
+      <xsd:extension base="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChart">
+        <xsd:attribute name="xAxisColumn" type="types:String" use="required"/>
+        <xsd:attribute name="labelsColumn" type="types:String" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="BoxPlot">
+    <xsd:complexContent>
+      <xsd:extension base="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChart"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="PieChart">
+    <xsd:complexContent>
+      <xsd:extension base="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChart"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="HistogramResult">
+    <xsd:complexContent>
+      <xsd:extension base="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChartResult">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="histogram" type="StatCharts.es.us.isa.sedl.module.statcharts:Histogram"/>
+          <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="counts" type="types:Integer"/>
+          <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="binThesholds" nillable="true" type="types:String"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:unsettable="false" name="sigma" type="types:Real" use="required"/>
+        <xsd:attribute ecore:unsettable="false" name="mean" type="types:Real" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="StatisticalChartResult">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisResult"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ScatterPlotResult">
+    <xsd:complexContent>
+      <xsd:extension base="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChartResult">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="scatterPlot" type="StatCharts.es.us.isa.sedl.module.statcharts:ScatterPlot"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="series" type="StatCharts.es.us.isa.sedl.module.statcharts:Serie"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Serie">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="x" type="types:Real"/>
+      <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="y" type="types:Real"/>
+      <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="labels" nillable="true" type="types:String"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="types:String" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="BoxPlotResult">
+    <xsd:complexContent>
+      <xsd:extension base="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChartResult">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="boxPlot" type="StatCharts.es.us.isa.sedl.module.statcharts:BoxPlot"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="serieBoxes" type="StatCharts.es.us.isa.sedl.module.statcharts:SerieBox"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SerieBox">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="quartiles" type="types:Real"/>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="outliers" type="StatCharts.es.us.isa.sedl.module.statcharts:Outlier"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:unsettable="false" name="standardDeviation" type="types:Real" use="required"/>
+    <xsd:attribute name="name" type="types:String" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="Outlier">
+    <xsd:attribute name="id" type="types:String" use="required"/>
+    <xsd:attribute ecore:unsettable="false" name="value" type="types:Real" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="PieChartResult">
+    <xsd:complexContent>
+      <xsd:extension base="StatCharts.es.us.isa.sedl.module.statcharts:StatisticalChartResult">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="values" type="types:Real"/>
+          <xsd:element ecore:resolveProxies="true" name="pieChart" type="StatCharts.es.us.isa.sedl.module.statcharts:PieChart"/>
+          <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="labels" nillable="true" type="types:String"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    modelDirectory="/StatCharts-MetaModel/src" modelPluginID="StatCharts-MetaModel"
+    modelName="StatCharts" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../../../../SEDL-MetaModel/src/main/resources/generationmodel/SEDL2XSD.genmodel#//SEDL ../../../../../org.eclipse.uml2.types/model/Types.genmodel#//types"
+    operationReflection="true" importOrganizing="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="IGNORE"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="NON_API_INVARIANTS" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNTYPED_PROPERTIES" value="REPORT"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
+    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+    <genAnnotations source="selectedPackages">
+      <details key="http:///StatCharts/es/us/isa/sedl/module/statcharts.ecore" value="StatCharts.es.us.isa.sedl.module.statcharts.xsd"/>
+      <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="Types.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="../schemas/"/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter.xmi">
+    <genAnnotations source="selectedPackages">
+      <details key="http:///StatCharts/es/us/isa/sedl/module/statcharts.ecore" value="StatCharts.es.us.isa.sedl.module.statchartsXMI.xsd"/>
+      <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="TypesXMI.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="../schemas/"/>
+  </genAnnotations>
+  <foreignModel>../metamodel/StatCharts.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="StatCharts" disposableProviderFactory="true"
+      ecorePackage="StatCharts.ecore#/">
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Es" basePackage="StatCharts"
+        disposableProviderFactory="true" ecorePackage="StatCharts.ecore#//es">
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Us" basePackage="StatCharts.es"
+          disposableProviderFactory="true" ecorePackage="StatCharts.ecore#//es/us">
+        <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Isa" basePackage="StatCharts.es.us"
+            disposableProviderFactory="true" ecorePackage="StatCharts.ecore#//es/us/isa">
+          <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Sedl" basePackage="StatCharts.es.us.isa"
+              disposableProviderFactory="true" ecorePackage="StatCharts.ecore#//es/us/isa/sedl">
+            <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Module" basePackage="StatCharts.es.us.isa.sedl"
+                disposableProviderFactory="true" ecorePackage="StatCharts.ecore#//es/us/isa/sedl/module">
+              <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Statcharts"
+                  basePackage="StatCharts.es.us.isa.sedl.module" disposableProviderFactory="true"
+                  ecorePackage="StatCharts.ecore#//es/us/isa/sedl/module/statcharts">
+                <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                  <genAnnotations source="../schemas/StatCharts.es.us.isa.sedl.module.statcharts.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                  </genAnnotations>
+                </genAnnotations>
+                <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter.xmi">
+                  <genAnnotations source="StatCharts.es.us.isa.sedl.module.statchartsXMI.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="TypesXMI.xsd"/>
+                  </genAnnotations>
+                  <genAnnotations source="../schemas/StatCharts.es.us.isa.sedl.module.statchartsXMI.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/TypesXMI.xsd"/>
+                  </genAnnotations>
+                </genAnnotations>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/StatisticalChart"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Histogram">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Histogram/nBins"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Histogram/sigmaBands"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Histogram/normalDistribution"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/ScatterPlot">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/ScatterPlot/xAxisColumn"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/ScatterPlot/labelsColumn"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/BoxPlot"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/PieChart"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/HistogramResult">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference StatCharts.ecore#//es/us/isa/sedl/module/statcharts/HistogramResult/histogram"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/HistogramResult/counts"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/HistogramResult/binThesholds"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/HistogramResult/sigma"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/HistogramResult/mean"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/StatisticalChartResult"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/ScatterPlotResult">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference StatCharts.ecore#//es/us/isa/sedl/module/statcharts/ScatterPlotResult/scatterPlot"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference StatCharts.ecore#//es/us/isa/sedl/module/statcharts/ScatterPlotResult/series"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Serie">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Serie/name"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Serie/x"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Serie/y"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Serie/labels"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/BoxPlotResult">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference StatCharts.ecore#//es/us/isa/sedl/module/statcharts/BoxPlotResult/boxPlot"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference StatCharts.ecore#//es/us/isa/sedl/module/statcharts/BoxPlotResult/serieBoxes"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/SerieBox">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/SerieBox/quartiles"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/SerieBox/standardDeviation"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference StatCharts.ecore#//es/us/isa/sedl/module/statcharts/SerieBox/outliers"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/SerieBox/name"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Outlier">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Outlier/id"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/Outlier/value"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="StatCharts.ecore#//es/us/isa/sedl/module/statcharts/PieChartResult">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/PieChartResult/values"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference StatCharts.ecore#//es/us/isa/sedl/module/statcharts/PieChartResult/pieChart"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute StatCharts.ecore#//es/us/isa/sedl/module/statcharts/PieChartResult/labels"/>
+                </genClasses>
+              </nestedGenPackages>
+            </nestedGenPackages>
+          </nestedGenPackages>
+        </nestedGenPackages>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,551 @@
+
+dinamicLoadingFunction(identifier)::=<<
+function loadHighCharts<identifier>() {
+    var Highcharts;
+    /********  Dynamically load up highcharts *********/
+    if (window.Highcharts === undefined) {
+        var script_tag1 = document.createElement('script');
+        script_tag1.setAttribute("type", "text/javascript");
+        script_tag1.setAttribute("src",
+            "https://code.highcharts.com/highcharts.js");
+        script_tag1.onload=function(){
+        var script_tag2 = document.createElement('script');
+        script_tag2.setAttribute("type", "text/javascript");
+        script_tag2.setAttribute("src",
+            "https://code.highcharts.com/highcharts-more.js");
+        script_tag2.onload=function(){
+        var script_tag3 = document.createElement('script');
+        script_tag3.setAttribute("type", "text/javascript");
+        script_tag3.setAttribute("src",
+            "https://code.highcharts.com/modules/exporting.js");
+        script_tag3.onload = printChart<identifier>;
+        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag3);
+        };
+        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag2);
+        };                
+        // Try to find the head, otherwise default to the documentElement
+        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag1);                
+    } else {
+        printChart<identifier>();
+        //  script_tag.setAttribute("src","https://code.highcharts.com/modules/exporting.js");
+    }
+}
+
+function transpose<identifier>(a) {
+    return Object.keys(a[0]).map(
+        function (c) { return a.map(function (r) { return r[c]; }); }
+        );
+    }
+>>
+
+Histogram(result,identifier,normal)::=<<
+<if(result.histogram.sigmaBands)>
+var plotLines<identifier> = [{
+    "value": <result.mean>,
+        "width": 2,
+        "color": "#666",
+        "zIndex": 10,
+        "dashStyle": "Dash",
+        "label": {
+        "text": "m",
+            "rotation": 0,
+            "align": "center",
+            "x": 0,
+            "y": -5,
+            "style": {
+            "fontSize": "10px"
+        }
+    }
+}, {
+    "value": <result.mean>-<result.sigma>,
+        "width": 1,
+        "color": "#999",
+        "dashStyle": "Dash",
+        "zIndex": 10,
+        "label": {
+        "text": "-1s",
+            "rotation": 0,
+            "align": "center",
+            "x": 0,
+            "y": -5,
+            "style": {
+            "fontSize": "10px"
+        }
+    }
+}, {
+    "value": <result.mean>+<result.sigma>,
+        "width": 1,
+        "color": "#999",
+        "dashStyle": "Dash",
+        "zIndex": 10,
+        "label": {
+        "text": "+1s",
+            "rotation": 0,
+            "align": "center",
+            "x": 0,
+            "y": -5,
+            "style": {
+            "fontSize": "10px"
+        }
+    }
+}, {
+    "value": <result.mean>-2*<result.sigma>,
+        "width": 1,
+        "color": "#999",
+        "dashStyle": "Dash",
+        "zIndex": 10,
+        "label": {
+        "text": "-2s",
+            "rotation": 0,
+            "align": "center",
+            "x": 0,
+            "y": -5,
+            "style": {
+            "fontSize": "10px"
+        }
+    }
+}, {
+    "value": <result.mean>+2*<result.sigma>,
+        "width": 1,
+        "color": "#999",
+        "dashStyle": "Dash",
+        "zIndex": 10,
+        "label": {
+        "text": "+2s",
+            "rotation": 0,
+            "align": "center",
+            "x": 0,
+            "y": -5,
+            "style": {
+            "fontSize": "10px"
+        }
+    }
+}, {
+    "value": <result.mean>-3*<result.sigma>,
+        "width": 1,
+        "color": "#999",
+        "dashStyle": "Dash",
+        "zIndex": 10,
+        "label": {
+        "text": "-3s",
+            "rotation": 0,
+            "align": "center",
+            "x": 0,
+            "y": -5,
+            "style": {
+            "fontSize": "10px"
+        }
+    }
+}, {
+    "value": <result.mean>+3*<result.sigma>,
+        "width": 1,
+        "color": "#999",
+        "dashStyle": "Dash",
+        "zIndex": 10,
+        "label": {
+        "text": "+3s",
+            "rotation": 0,
+            "align": "center",
+            "x": 0,
+            "y": -5,
+            "style": {
+            "fontSize": "10px"
+        }
+    }
+}];
+
+var plotBands<identifier> = [{
+    "from": <result.mean>-<result.sigma>,
+        "to": <result.mean>+<result.sigma>,
+        "color": "rgba(184,210,236,.1)",
+        "zIndex": 0
+}, {
+    "from": <result.mean>-<result.sigma>*2,
+        "to": <result.mean>+<result.sigma>*2,
+        "color": "rgba(184,210,236,.1)",
+        "zIndex": 0
+}, {
+    "from": <result.mean>-<result.sigma>*3,
+        "to": <result.mean>+<result.sigma>*3,
+        "color": "rgba(184,210,236,.1)",
+        "zIndex": 0
+}];
+<endif>
+
+function printChart<identifier>(){
+    var chart;    
+        /******* Load CSS ******
+        var css_link = $("\<link\>", { 
+            rel: "stylesheet", 
+            type: "text/css", 
+            href: "style.css" 
+        });
+        css_link.appendTo('head');          
+        **************************/
+        /******* Load HTML *******/
+            chart = new Highcharts.Chart({                 
+                chart: {
+                    renderTo: '<identifier>',
+                    events: {
+                        },
+                    backgroundColor: '#FFFFFF',
+                    zoomType: 'xy',
+                    type: 'column',
+                    marginLeft: 40,
+                    marginRight: 40,
+                    marginBottom: 40
+                },                
+                plotOptions: {
+                    series: {
+                        minPointLength: 1,
+                        shadow: false,
+                        marker: {
+                            enabled: false
+                        }
+                    },
+                    area: {
+                        events: {
+                            legendItemClick: function (e) {
+                                if (this.name == 'Sigma Bands') {
+                                    toggleBands<identifier>(this.chart);
+                                }
+                            }
+                        }
+                    },
+                    column: {
+                        pointPadding: 0,
+                        borderWidth: 0,
+                        groupPadding: 0,
+                        shadow: false
+                    }
+                },
+                 title: {
+                     text: 'Histogram of <result.histogram.datasetSpecification.projections:{x|<x.projectedVariables>}>',
+                     x: -5,
+                     style: {
+                         color: '#000000',
+                         fontWeight: 'bold',
+                         fontSize: '17pt'
+                    }
+                 },                 
+                 xAxis: {
+                    lineColor: '#999',
+                    tickColor: '#ccc'<if(result.histogram.sigmaBands)>,
+                    plotLines: plotLines<identifier>,
+                    plotBands: plotBands<identifier>
+                    <endif>
+                 },                 
+                 yAxis: [{
+                     //LHS axis
+                     title: {
+                         text: '',
+                         align: 'high',
+                         rotation: 0,
+                         offset: 10,
+                         style: {
+                             color: '#969696',
+                             //fontWeight: 'bold',
+                             fontSize: '11pt'
+                         }
+                     },
+                     labels: {
+                         style: {
+                             color: '#969696',
+                             //fontWeight: 'bold',
+                             fontSize: '11pt'
+                         }
+                     },
+                     showLastLabel: false,
+                     showFirstLabel: true,
+                     minRange: 3,
+                     minTickInterval: 1,
+                     min: null,
+                     max: null,
+                     opposite: false,
+                     startOnTick: true,
+                     //tickInterval: 5,
+                     allowDecimals: true
+                 }, {
+                     //RHS axis
+                     title: {
+                         text: 'Counts',
+                         align: 'high',
+                         rotation: 0,
+                         offset: 20,
+                         style: {
+                             color: '#969696',
+                             //fontWeight: 'bold',
+                             fontSize: '11pt'
+                         }
+                     },
+                     linkedTo: 0,
+                     labels: {
+                         style: {
+                             color: '#969696',
+                             //fontWeight: 'bold',
+                             fontSize: '11pt'
+                         }
+                     },
+                     showLastLabel: false,
+                     minTickInterval: 1,
+                     minRange: 3,
+                     showFirstLabel: false,
+                     startOnTick: true,
+                     min: null,
+                     max: null,
+                     opposite: true,
+                     //tickInterval: 10,
+                     allowDecimals: false
+                 }],
+                 tooltip: {
+                     xDateFormat: '%d-%b-%Y %l%P', //'%d-%b-%Y %l%P'                     
+                     valueDecimals: 1
+                     //formatter: function () {
+                     //  return this.x + '\<br/\>\<b\>' + this.series.name + ':' + '\</b\>' + this.y + '%';
+                     //}
+                 },
+                 legend: {
+                    <if(!result.histogram.normalDistribution)>
+                     enabled: false
+                    <endif>
+                     //    layout: 'vertical',
+                     //    align: 'right',
+                     //    verticalAlign: 'left',
+                     //   x: -20,
+                     //   y: 10,
+                     //    borderWidth: 0
+                 },
+                 series: [{
+                     name: '<result.histogram.datasetSpecification.projections:{x|<x.projectedVariables>}>',
+                     data: transpose<identifier>([                            
+                        [<result.binThesholds;separator=",">],
+                        [<result.counts;separator=",">]
+                        ]),
+                     marker: {
+                         enabled: true
+                     },
+                     yaxis: 0,
+                     pointRange: (<last(result.binThesholds)>-<first(result.binThesholds)>)/(<length(result.binThesholds)>-1),
+                     borderWidth: .5,
+                     borderColor: '#666',
+                     pointPadding: .015,
+                     groupPadding: 0,
+                     color: '#e3e3e3'
+                 }
+                <if(result.histogram.normalDistribution)>
+                , {
+                    type: 'spline',
+                    lineWidth: 1,
+                    name: 'Normal Distribution',
+                    color: 'rgba(90,155,212,.75)',
+                    fillColor: 'rgba(90,155,212,.15)',
+                    data: [
+                            <normal:{x|<point(x)>};separator=",">
+                        ]
+                    }
+                <endif>
+                 <if(result.histogram.sigmaBands)>
+                 , {
+                    type: 'area',
+                    name: 'Sigma Bands'
+                    }
+                 <endif>
+                ],
+                 exporting: {
+                     enabled: true
+                 }
+             });
+}               
+function toggleBands<identifier>(chart) {    
+    var i = chart.xAxis[0].plotLinesAndBands.length;
+    if (i > 0) {
+        while (i--) {
+            chart.xAxis[0].plotLinesAndBands[i].destroy();
+        }
+    } else {
+        chart.xAxis[0].update({
+            <if(result.histogram.normalDistribution)>
+            plotLines: plotLines<identifier>
+            <endif>
+            <if(result.histogram.sigmaBands)>,
+            plotBands: plotBands<identifier>
+            <endif>
+        });
+    }
+
+}
+
+>>
+
+
+BoxPlot(result,identifier)::=<<
+function printChart<identifier>(){
+    var chart;    
+        /******* Load CSS ******
+        var css_link = $("\<link>", { 
+            rel: "stylesheet", 
+            type: "text/css", 
+            href: "style.css" 
+        });
+        css_link.appendTo('head');          
+        ************************/
+        /******* Load HTML *******/
+            chart = new Highcharts.Chart({                 
+                chart: {
+                    renderTo: '<identifier>',
+                    events: {
+                        },
+                    backgroundColor: '#FFFFFF',
+                    zoomType: 'xy',
+                    type: 'boxplot',
+                    marginLeft: 40,
+                    marginRight: 40,
+                    marginBottom: 40
+                },                                
+                 title: {
+                     text: 'BoxPlot of <result.histogram.datasetSpecification.projections:{x|<x.projectedVariables>}>',
+                     x: -5,
+                     style: {
+                         color: '#000000',
+                         fontWeight: 'bold',
+                         fontSize: '17pt'
+                    }
+                 },                 
+                 xAxis: {
+                    categories: [<result.serieBoxes:{s|'<s.name>'};separator=",">],
+                    title: {
+                        text: '<result.boxPlot.datasetSpecification.groupingProjections:{p|p.projectedVariables}>'
+                    }},                 
+                 yAxis: [{
+                            title: {
+                                text: '<result.boxPlot.datasetSpecification.projections:{p|p.projectedVariables}>'
+                            }
+                }],
+                tooltip: {
+                     xDateFormat: '%d-%b-%Y %l%P', //'%d-%b-%Y %l%P'                     
+                     valueDecimals: 1
+                     //formatter: function () {
+                     //  return this.x + '\<br/\>\<b\>' + this.series.name + ':' + '\</b\>' + this.y + '%';
+                     //}
+                 },
+                 legend: {
+                     enabled: false
+                     //    layout: 'vertical',
+                     //    align: 'right',
+                     //    verticalAlign: 'left',
+                     //   x: -20,
+                     //   y: 10,
+                     //    borderWidth: 0
+                 },
+                 series: [{
+                     name: 'Observations',
+                     data: [                            
+                        <result.serieBoxes:{s|[<s.quartiles;separator=",">]};separator=",">
+                        ],
+                     marker: {
+                         enabled: true
+                     },
+                     yaxis: 0
+                 },{
+                    name:'outliers',
+                    type: 'scatter',
+                    data: [
+                        <result>
+                    ],                    
+                    marker: {
+                        fillColor: 'white',
+                        lineWidth: 1,
+                        lineColor: Highcharts.getOptions().colors[0]
+                    },
+                    tooltip: {
+                        pointFormat: 'Observation: {point.y}'
+                    }
+                 }],
+                 exporting: {
+                     enabled: true
+                 }
+             });
+}               
+>>
+
+point(p)::=<<
+    [<p;separator=",">]
+>>
+
+ScatterPlot(result,identifier)::=<<
+function printChart<identifier>(){
+    var chart;    
+        /******* Load CSS ******
+        var css_link = $("\<link>", { 
+            rel: "stylesheet", 
+            type: "text/css", 
+            href: "style.css" 
+        });
+        css_link.appendTo('head');          
+        ************************/
+        /******* Load HTML *******/
+            chart = new Highcharts.Chart({                 
+                chart: {
+                    renderTo: '<identifier>',
+                    events: {
+                        },
+                    backgroundColor: '#FFFFFF',
+                    zoomType: 'xy',
+                    type: 'scatter',
+                    marginLeft: 40,
+                    marginRight: 40,
+                    marginBottom: 40
+                },                                
+                 title: {
+                     text: 'BoxPlot of <result.histogram.datasetSpecification.projections:{x|<x.projectedVariables>}>',
+                     x: -5,
+                     style: {
+                         color: '#000000',
+                         fontWeight: 'bold',
+                         fontSize: '17pt'
+                    }
+                 },                 
+                 xAxis: {                    
+                    title: {
+                        text: '<result.boxPlot.datasetSpecification>'
+                    }},                 
+                 yAxis: [{
+                            title: {
+                                text: '<result.boxPlot.datasetSpecification.projections:{p|p.projectedVariables}>'
+                            }
+                }],
+                tooltip: {
+                     xDateFormat: '%d-%b-%Y %l%P', //'%d-%b-%Y %l%P'                     
+                     valueDecimals: 1
+                     //formatter: function () {
+                     //  return this.x + '\<br/\>\<b\>' + this.series.name + ':' + '\</b\>' + this.y + '%';
+                     //}
+                 },
+                 legend: {
+                     enabled: false
+                     //    layout: 'vertical',
+                     //    align: 'right',
+                     //    verticalAlign: 'left',
+                     //   x: -20,
+                     //   y: 10,
+                     //    borderWidth: 0
+                 },
+                 series: [
+                        <result.series:{s|<serie(s,identifier)>};separator=",">                     
+                     ],
+                 exporting: {
+                     enabled: true
+                 }
+             });
+    }               
+>>
+
+serie(s,identifier)::=<<
+{
+    name: '<s.name>',
+    data: transpose<identifier>([                            
+            [<s.x;separator=",">],
+            [<s.y;separator=",">]
+        ])
+}
+>>

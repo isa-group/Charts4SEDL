@@ -1,0 +1,11 @@
+delimiters "$", "$"
+
+import "templates/SEDL.stg"
+
+Histogram(s)::="Histogram $if(s.nBins)$  nBins=$s.nBins$ $endif$ $datasetSpecification(s.datasetSpecification)$"
+
+ScatterPlot(s)::="ScatterPlot $datasetSpecification(s.datasetSpecification)$"
+
+PieChart(s)::="PieChart $datasetSpecification(s.datasetSpecification)$"
+
+BoxPlot(s)::="BoxPlot $datasetSpecification(s.datasetSpecification)$"

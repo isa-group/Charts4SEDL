@@ -1,0 +1,303 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>es.us.isa.sedl.modules</groupId>
+        <artifactId>Charts4SEDL</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>./../../pom.xml</relativePath>
+    </parent>
+    <groupId>es.us.isa.sedl.modules.</groupId>
+    <artifactId>Charts4SEDL-Module</artifactId>    
+    <name>Charts for SEDL Module</name>	
+        
+    
+    <dependencies>
+        <dependency>
+            <groupId>es.us.isa.sedl</groupId>
+            <artifactId>SEDL-core</artifactId>
+            <version>${sedl.version}</version>
+        </dependency>        
+        <dependency>
+            <groupId>es.us.isa.sedl</groupId>
+            <artifactId>SEDLAnalyzer</artifactId>
+            <version>${sedl.version}</version>            
+        </dependency>        
+        <dependency>
+            <groupId>es.us.isa.sedl.modules</groupId>
+            <artifactId>SEDLModuleManager</artifactId>
+            <version>0.0.1-SNAPSHOT</version>            
+        </dependency>
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4-runtime</artifactId>
+            <version>4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>ST4</artifactId>
+            <version>4.0.8</version>
+        </dependency>                
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.0</version>
+            <type>jar</type>
+        </dependency>                        
+        <!-- JAXB rutime is needed for generating the Java
+        classes from the XML schemas -->
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics-runtime</artifactId>
+            <version>0.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.2.4</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>    
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/antlr4</directory>
+            </resource>
+            <resource>
+                <directory>
+                    src/main/resources
+                </directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>                   
+                    </execution>
+                </executions>
+                <configuration>
+                    <basedir>${basedir}/../StatCharts-MetaModel/src/main/resources/schemas</basedir>
+                    <includes>
+                        <include>*.xsd</include>
+                    </includes>               
+                    <replacements>
+                        <replacement>
+                            <token>xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore"</token>
+                            <value>!-- </value>
+                        </replacement> 
+                        <replacement>
+                            <token>"platform:/plugin/org.eclipse.emf.ecore/model/Ecore.xsd"/</token>
+                            <value>"" --</value>        
+                        </replacement> 
+                    </replacements>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>add-SEDL-Generated-Sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/generated</source>                                
+                            </sources>
+                        </configuration>
+                        <!-- -->
+                    </execution>
+                </executions>
+            </plugin>
+            <!--
+            <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>jaxb2-maven-plugin</artifactId>
+                    <version>1.6</version>
+                    <executions>
+                            <execution>
+                                    <id>schemagen</id>
+                                    <goals>
+                                            <goal>schemagen</goal>
+                                    </goals>
+                                    <phase>generate-resources</phase>
+                                    <configuration>
+                                            <verbose>true</verbose>							
+                                            <includes>
+                                                    <include>../generated/es/us/isa/sedl/core/*.java</include>
+                                            </includes>
+                                            <outputDirectory>${basedir}/src/main/resources/schemas</outputDirectory>
+                                    </configuration>
+                            </execution>
+                    </executions>
+            </plugin>-->		
+
+            <plugin> 
+                <groupId>org.jvnet.jaxb2.maven2</groupId> 
+                <artifactId>maven-jaxb22-plugin</artifactId> 
+                <version>0.10.0</version> 
+                <executions> 
+                    <execution> 
+                        <goals> 
+                            <goal>generate</goal> 
+                        </goals> 
+                        <configuration> 
+                            <!-- Compliing the schema from the official release site
+                            <schemas> 
+                                <schema> 
+                                    <url>http://moses.us.es/schemas/sedl/v1/SEDL.xsd</url> 
+                                </schema> 
+                                <schema> 
+                                    <url>http://moses.us.es/schemas/sedl/v1/SEDL.Analysis.Statistic.xsd</url> 
+                                </schema> 
+                                <schema> 
+                                    <url>http://moses.us.es/schemas/sedl/v1/SEDL.Analysis.DatasetSpecification.xsd</url> 
+                                </schema> 
+                            </schemas>  -->
+                            <!--Compliing a local copy of the schemas
+                            <schemaDirectory>src/main/resources/schemas</schemaDirectory> --> 
+                            <!-- Compliing the schemas generated from UML -->
+                            <schemaDirectory>${basedir}/../StatCharts-MetaModel/src/main/resources/schemas</schemaDirectory> 
+                            <!-- Custom binding files directory -->
+                            <bindingDirectory>src/main/resources/binding</bindingDirectory>
+                            <packageName>es.us.sedl.module.statcharts</packageName> 
+                            <generateDirectory>${basedir}/generated</generateDirectory> 
+                            <forceRegenerate>true</forceRegenerate> 
+                            <verbose>true</verbose> 
+                            <args> 
+                                <!--<arg>-XtoString</arg>-->
+                                <arg>-Xequals</arg> 
+                                <arg>-XhashCode</arg> 
+                                <arg>-Xcopyable</arg> 
+                                <!--<arg>-Xmergeable</arg> -->
+                                <arg>-Xinheritance</arg>
+                            </args> 
+                            <plugins> 
+                                <plugin> 
+                                    <groupId>org.jvnet.jaxb2_commons</groupId> 
+                                    <artifactId>jaxb2-basics</artifactId> 
+                                    <version>0.6.3</version> 
+                                </plugin> 
+                            </plugins> 
+                        </configuration> 
+                    </execution> 
+                </executions> 
+            </plugin>             
+            <plugin>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-maven-plugin</artifactId>
+                <version>4.1</version>
+                <executions>
+                    <execution>
+                        <id>antlr</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>antlr4</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/generated</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>build-helper-maven-plugin</artifactId> 
+            <version>1.7</version> <executions> <execution> <id>add-source</id> <phase>generate-sources</phase> 
+            <goals> <goal>add-source</goal> </goals> <configuration> <sources> <source>src/main/generated</source> 
+            </sources> </configuration> </execution> </executions> </plugin>-->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.6.1</version>
+                <executions>
+                    <execution>
+                        <id>clean-customized-schema-generated-files</id>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <phase>process-sources</phase>                                    
+                        <configuration>
+                            <filesets>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/</directory>
+                                    <includes>
+                                        <include>**</include>                                                
+                                    </includes>                    
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>             
+            <!-- In order to use the updated SEDL grammar file in the antlr
+            task we must copy it form the corresponding project -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>Copy-SEDL-grammar</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/src/main/antlr4/imports</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>${project.basedir}/../../../../../SEDL4People/modules/SEDL4People-Language/src/main/antlr4/es/us/isa/sedl/grammar</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>   
+            <!-- We create a fat-jar to avoid class loading issues 
+            using the Maven Shade Plugin 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>			
+                    </execution>
+                </executions>
+            </plugin>-->		
+        </plugins>
+    </build>
+    
+</project>
