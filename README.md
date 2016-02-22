@@ -5,5 +5,15 @@ You can see this module in action at [EXEMPLAR](https://exemplar.us.es/demo/Char
 
 Currently the modules supports the following types of charts:
 
-* Histograms ![](https://www.dropbox.com/s/u7nhaz1yy694aux/Histogram.png?dl=1)
-* BoxPlots   ![](https://www.dropbox.com/s/6cfkcu4gniuzzi3/BoxPlot.png?dl=1)
+
+### Histograms 
+Specified in SEDL as:
+![](https://www.dropbox.com/s/zer0zykbxdq8r5j/ChartsSpecification.png?dl=0)
+When the ComputeStat operation is invoked the result generated is:
+![](https://www.dropbox.com/s/u7nhaz1yy694aux/Histogram.png?dl=1)
+
+### BoxPlots   
+Specified in SEDL as :
+![](https://www.dropbox.com/s/zer0zykbxdq8r5j/ChartsSpecification.png?dl=0)
+When the ComputeStat operation is invoked the result generated is:
+![](https://www.dropbox.com/s/6cfkcu4gniuzzi3/BoxPlot.png?dl=1)
