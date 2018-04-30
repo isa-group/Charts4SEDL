@@ -9,9 +9,11 @@ import es.us.isa.sedl.core.BasicExperiment;
 import es.us.isa.sedl.core.Experiment;
 import es.us.isa.sedl.core.ExtensionPointElement;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
-import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.AnalysisSpecification;
+import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
+import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.util.Error;
+import es.us.isa.sedl.error.SEDL4PeopleError;
 import es.us.isa.sedl.marshaller.analysis.statistic.DatasetSpecificationParser;
 import es.us.isa.sedl.module.SEDLModuleUnmarshaller;
 import java.util.ArrayList;
@@ -58,10 +60,33 @@ public class StatChartsUnmarshaller implements SEDLModuleUnmarshaller {
         }
         DatasetSpecification dss=dssParser.parse(content.substring(index+1), null);
         chart.setDatasetSpecification(dss);
-        AnalysisSpecification aspec=((BasicExperiment)experiment).getDesign().getExperimentalDesign().getIntendedAnalyses().get(0);
-        if(aspec instanceof StatisticalAnalysisSpec)
-            ((StatisticalAnalysisSpec)aspec).getStatistic().add(chart);
+        AnalysisSpecificationGroup aspec=findAnalysisSpecificationGroup(element,experiment);        
+        if(aspec!=null){
+            StatisticalAnalysisSpec sas=new StatisticalAnalysisSpec();
+            sas.getStatistic().add(chart);
+            aspec.getAnalyses().add(sas);
+        }else{
+            Error e=new SEDL4PeopleError(element.getContext().start.getLine(), 
+                                            element.getContext().start.getStartIndex(), element.getContext().stop.getStopIndex(), Error.ERROR_SEVERITY.ERROR, 
+                                            "Unable to find the analysis group to which the chart should be added");
+            result.add(e);
+        }
         return result;
+    }
+    
+    private AnalysisSpecificationGroup findAnalysisSpecificationGroup(ExtensionPointElement element, Experiment experiment) {
+        AnalysisSpecificationGroup aspec=null;
+        List<AnalysisSpecificationGroup> analysisGroups=((BasicExperiment)experiment).getDesign().getExperimentalDesign().getIntendedAnalyses();
+        String analysisGroupID=null;
+        if(element.getExtensionPointLocator()!=null && !element.getExtensionPointLocator().isEmpty())
+            analysisGroupID=element.getExtensionPointLocator().get(0);
+        if(analysisGroupID!=null && analysisGroups!=null && !analysisGroups.isEmpty()){            
+            for(AnalysisSpecificationGroup ag:analysisGroups){
+                if(analysisGroupID.equals(ag.getId()))
+                    aspec=ag;
+            }
+        }
+        return aspec;
     }
     
 }

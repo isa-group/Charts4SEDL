@@ -1,4 +1,4 @@
-// Generated from es/es/isa/sedl/module/statcharts/grammar/StatCharts.g4 by ANTLR 4.1
+// Generated from es\es\isa\sedl\module\statcharts\grammar\StatCharts.g4 by ANTLR 4.1
 package es.es.isa.sedl.module.statcharts.grammar;
 
 import java.util.List;

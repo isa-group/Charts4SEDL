@@ -8,8 +8,9 @@ import es.us.isa.sedl.core.BasicExperiment;
 import es.us.isa.sedl.core.Experiment;
 import es.us.isa.sedl.core.ExtensionPointElement;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
-import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.AnalysisSpecification;
+import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
+import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.util.Error;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser;
 import es.us.isa.sedl.marshaller.SEDL4PeopleExtendedListener;
@@ -101,7 +102,7 @@ public class StatChartsModuleUnmarshaller extends StatChartsBaseListener impleme
         try
         {
             String specText = is.getText(interval);
-            SEDL4PeopleExtendedListener l = new SEDL4PeopleExtendedListener(null);
+            SEDL4PeopleExtendedListener l = new SEDL4PeopleExtendedListener(null,null);
             l.setVariables(((BasicExperiment) experiment).getDesign().getVariables());
             spec = specParser.parse(specText, l);
         }catch(StringIndexOutOfBoundsException ex){
@@ -131,10 +132,12 @@ public class StatChartsModuleUnmarshaller extends StatChartsBaseListener impleme
 
     private StatisticalAnalysisSpec findAnalysisSpec(String elementIdentifier) {
         StatisticalAnalysisSpec spec = null;
-        for (AnalysisSpecification candidate : experiment.getDesign().getExperimentalDesign().getIntendedAnalyses()) {
-            if (candidate.getId().equals(elementIdentifier) && candidate instanceof StatisticalAnalysisSpec) {
-                spec = (StatisticalAnalysisSpec) candidate;
-                break;
+        for (AnalysisSpecificationGroup candidateGroup : experiment.getDesign().getExperimentalDesign().getIntendedAnalyses()) {
+            for(AnalysisSpecification candidate: candidateGroup.getAnalyses()){
+                if (candidate.getId().equals(elementIdentifier) && candidate instanceof StatisticalAnalysisSpec) {
+                    spec = (StatisticalAnalysisSpec) candidate;
+                    break;
+                }
             }
         }
         return spec;

@@ -15,9 +15,10 @@ import org.junit.Test;
 
 import es.us.isa.sedl.core.BasicExperiment;
 import es.us.isa.sedl.core.ExtensionPointElement;
-import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
+import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.Design;
 import es.us.isa.sedl.core.design.FullySpecifiedExperimentalDesign;
+import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.util.Error;
 
 /**
@@ -41,8 +42,8 @@ public class StatChartsModuleUnmarshallerTest {
         Collection<? extends Error> expResult = Collections.EMPTY_LIST;
         Collection<? extends Error> result = instance.unmarshall(element, experiment);
         assertEquals(expResult, result);
-        StatisticalAnalysisSpec sa=(StatisticalAnalysisSpec)experiment.getDesign().getExperimentalDesign().getIntendedAnalyses().get(0);
-        assertEquals(sa.getStatistic().size(),1);
+        AnalysisSpecificationGroup sa=experiment.getDesign().getExperimentalDesign().getIntendedAnalyses().get(0);
+        assertEquals(sa.getAnalyses().size(),1);        
         
     }    
 
@@ -53,7 +54,9 @@ public class StatChartsModuleUnmarshallerTest {
         design.setExperimentalDesign(fsed);
         result.setDesign(design);
         StatisticalAnalysisSpec as=new StatisticalAnalysisSpec();
-        fsed.getIntendedAnalyses().add(as);
+        AnalysisSpecificationGroup ag=new AnalysisSpecificationGroup();
+        ag.getAnalyses().add(as);
+        fsed.getIntendedAnalyses().add(ag);
         as.setId("Analysis");
         return result;
     }
