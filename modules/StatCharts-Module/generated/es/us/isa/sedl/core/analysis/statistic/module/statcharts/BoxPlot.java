@@ -2,11 +2,11 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.04.30 a las 12:47:30 PM CEST 
+// Generado el: 2018.05.03 a las 01:40:01 AM CEST 
 //
 
 
-package statcharts.es.us.isa.sedl.module.statcharts;
+package es.us.isa.sedl.core.analysis.statistic.module.statcharts;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -24,14 +24,14 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 
 
 /**
- * <p>Clase Java para PieChart complex type.
+ * <p>Clase Java para BoxPlot complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="PieChart">
+ * &lt;complexType name="BoxPlot">
  *   &lt;complexContent>
- *     &lt;extension base="{http:///StatCharts/es/us/isa/sedl/module/statcharts.ecore}StatisticalChart">
+ *     &lt;extension base="{http:///isa.us.es/sedl/core/analysis/statistic/module/statcharts.ecore}StatisticalChart">
  *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,15 +40,15 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "PieChart")
-public class PieChart
+@XmlType(name = "BoxPlot")
+public class BoxPlot
     extends StatisticalChart
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof PieChart)) {
+        if (!(object instanceof BoxPlot)) {
             return false;
         }
         if (this == object) {
@@ -91,7 +91,7 @@ public class PieChart
     }
 
     public Object createNewInstance() {
-        return new PieChart();
+        return new BoxPlot();
     }
 
 }

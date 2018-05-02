@@ -9,7 +9,11 @@ import es.us.isa.sedl.core.BasicExperiment;
 import es.us.isa.sedl.core.Experiment;
 import es.us.isa.sedl.core.ExtensionPointElement;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
-import es.us.isa.sedl.core.design.AnalysisSpecification;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.BoxPlot;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Histogram;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.PieChart;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.ScatterPlot;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.StatisticalChart;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.util.Error;
@@ -19,11 +23,7 @@ import es.us.isa.sedl.module.SEDLModuleUnmarshaller;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import statcharts.es.us.isa.sedl.module.statcharts.BoxPlot;
-import statcharts.es.us.isa.sedl.module.statcharts.Histogram;
-import statcharts.es.us.isa.sedl.module.statcharts.PieChart;
-import statcharts.es.us.isa.sedl.module.statcharts.ScatterPlot;
-import statcharts.es.us.isa.sedl.module.statcharts.StatisticalChart;
+
 
 /**
  *

@@ -2,16 +2,17 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.04.30 a las 12:47:30 PM CEST 
+// Generado el: 2018.05.03 a las 01:40:01 AM CEST 
 //
 
 
-package statcharts.es.us.isa.sedl.module.statcharts;
+package es.us.isa.sedl.core.analysis.statistic.module.statcharts;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
@@ -28,20 +29,21 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Clase Java para PieChartResult complex type.
+ * <p>Clase Java para Serie complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="PieChartResult">
+ * &lt;complexType name="Serie">
  *   &lt;complexContent>
- *     &lt;extension base="{http:///StatCharts/es/us/isa/sedl/module/statcharts.ecore}StatisticalChartResult">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="values" type="{http://www.eclipse.org/uml2/5.0.0/Types}Real" maxOccurs="unbounded"/>
- *         &lt;element name="pieChart" type="{http:///StatCharts/es/us/isa/sedl/module/statcharts.ecore}PieChart"/>
+ *         &lt;element name="x" type="{http://www.eclipse.org/uml2/5.0.0/Types}Real" maxOccurs="unbounded"/>
+ *         &lt;element name="y" type="{http://www.eclipse.org/uml2/5.0.0/Types}Real" maxOccurs="unbounded"/>
  *         &lt;element name="labels" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" maxOccurs="unbounded"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *       &lt;attribute name="name" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" />
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -49,36 +51,37 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "PieChartResult", propOrder = {
-    "values",
-    "pieChart",
+@XmlType(name = "Serie", propOrder = {
+    "x",
+    "y",
     "labels"
 })
-public class PieChartResult
-    extends StatisticalChartResult
+public class Serie
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
     @XmlElement(required = true)
-    protected List<String> values;
+    protected List<String> x;
     @XmlElement(required = true)
-    protected PieChart pieChart;
+    protected List<String> y;
     @XmlElement(required = true, nillable = true)
     protected List<String> labels;
+    @XmlAttribute(name = "name", required = true)
+    protected String name;
 
     /**
-     * Gets the value of the values property.
+     * Gets the value of the x property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the values property.
+     * This is why there is not a <CODE>set</CODE> method for the x property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getValues().add(newItem);
+     *    getX().add(newItem);
      * </pre>
      * 
      * 
@@ -88,35 +91,40 @@ public class PieChartResult
      * 
      * 
      */
-    public List<String> getValues() {
-        if (values == null) {
-            values = new ArrayList<String>();
+    public List<String> getX() {
+        if (x == null) {
+            x = new ArrayList<String>();
         }
-        return this.values;
+        return this.x;
     }
 
     /**
-     * Obtiene el valor de la propiedad pieChart.
+     * Gets the value of the y property.
      * 
-     * @return
-     *     possible object is
-     *     {@link PieChart }
-     *     
-     */
-    public PieChart getPieChart() {
-        return pieChart;
-    }
-
-    /**
-     * Define el valor de la propiedad pieChart.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the y property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link PieChart }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getY().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
      */
-    public void setPieChart(PieChart value) {
-        this.pieChart = value;
+    public List<String> getY() {
+        if (y == null) {
+            y = new ArrayList<String>();
+        }
+        return this.y;
     }
 
     /**
@@ -148,32 +156,53 @@ public class PieChartResult
         return this.labels;
     }
 
+    /**
+     * Obtiene el valor de la propiedad name.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Define el valor de la propiedad name.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
+
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof PieChartResult)) {
+        if (!(object instanceof Serie)) {
             return false;
         }
         if (this == object) {
             return true;
         }
-        if (!super.equals(thisLocator, thatLocator, object, strategy)) {
-            return false;
-        }
-        final PieChartResult that = ((PieChartResult) object);
+        final Serie that = ((Serie) object);
         {
-            List<String> lhsValues;
-            lhsValues = (((this.values!= null)&&(!this.values.isEmpty()))?this.getValues():null);
-            List<String> rhsValues;
-            rhsValues = (((that.values!= null)&&(!that.values.isEmpty()))?that.getValues():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "values", lhsValues), LocatorUtils.property(thatLocator, "values", rhsValues), lhsValues, rhsValues)) {
+            List<String> lhsX;
+            lhsX = (((this.x!= null)&&(!this.x.isEmpty()))?this.getX():null);
+            List<String> rhsX;
+            rhsX = (((that.x!= null)&&(!that.x.isEmpty()))?that.getX():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "x", lhsX), LocatorUtils.property(thatLocator, "x", rhsX), lhsX, rhsX)) {
                 return false;
             }
         }
         {
-            PieChart lhsPieChart;
-            lhsPieChart = this.getPieChart();
-            PieChart rhsPieChart;
-            rhsPieChart = that.getPieChart();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "pieChart", lhsPieChart), LocatorUtils.property(thatLocator, "pieChart", rhsPieChart), lhsPieChart, rhsPieChart)) {
+            List<String> lhsY;
+            lhsY = (((this.y!= null)&&(!this.y.isEmpty()))?this.getY():null);
+            List<String> rhsY;
+            rhsY = (((that.y!= null)&&(!that.y.isEmpty()))?that.getY():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "y", lhsY), LocatorUtils.property(thatLocator, "y", rhsY), lhsY, rhsY)) {
                 return false;
             }
         }
@@ -186,6 +215,15 @@ public class PieChartResult
                 return false;
             }
         }
+        {
+            String lhsName;
+            lhsName = this.getName();
+            String rhsName;
+            rhsName = that.getName();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "name", lhsName), LocatorUtils.property(thatLocator, "name", rhsName), lhsName, rhsName)) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -195,21 +233,26 @@ public class PieChartResult
     }
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = super.hashCode(locator, strategy);
+        int currentHashCode = 1;
         {
-            List<String> theValues;
-            theValues = (((this.values!= null)&&(!this.values.isEmpty()))?this.getValues():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "values", theValues), currentHashCode, theValues);
+            List<String> theX;
+            theX = (((this.x!= null)&&(!this.x.isEmpty()))?this.getX():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "x", theX), currentHashCode, theX);
         }
         {
-            PieChart thePieChart;
-            thePieChart = this.getPieChart();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "pieChart", thePieChart), currentHashCode, thePieChart);
+            List<String> theY;
+            theY = (((this.y!= null)&&(!this.y.isEmpty()))?this.getY():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "y", theY), currentHashCode, theY);
         }
         {
             List<String> theLabels;
             theLabels = (((this.labels!= null)&&(!this.labels.isEmpty()))?this.getLabels():null);
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "labels", theLabels), currentHashCode, theLabels);
+        }
+        {
+            String theName;
+            theName = this.getName();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "name", theName), currentHashCode, theName);
         }
         return currentHashCode;
     }
@@ -230,29 +273,33 @@ public class PieChartResult
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
-        super.copyTo(locator, draftCopy, strategy);
-        if (draftCopy instanceof PieChartResult) {
-            final PieChartResult copy = ((PieChartResult) draftCopy);
-            if ((this.values!= null)&&(!this.values.isEmpty())) {
-                List<String> sourceValues;
-                sourceValues = (((this.values!= null)&&(!this.values.isEmpty()))?this.getValues():null);
+        if (draftCopy instanceof Serie) {
+            final Serie copy = ((Serie) draftCopy);
+            if ((this.x!= null)&&(!this.x.isEmpty())) {
+                List<String> sourceX;
+                sourceX = (((this.x!= null)&&(!this.x.isEmpty()))?this.getX():null);
                 @SuppressWarnings("unchecked")
-                List<String> copyValues = ((List<String> ) strategy.copy(LocatorUtils.property(locator, "values", sourceValues), sourceValues));
-                copy.values = null;
-                if (copyValues!= null) {
-                    List<String> uniqueValuesl = copy.getValues();
-                    uniqueValuesl.addAll(copyValues);
+                List<String> copyX = ((List<String> ) strategy.copy(LocatorUtils.property(locator, "x", sourceX), sourceX));
+                copy.x = null;
+                if (copyX!= null) {
+                    List<String> uniqueXl = copy.getX();
+                    uniqueXl.addAll(copyX);
                 }
             } else {
-                copy.values = null;
+                copy.x = null;
             }
-            if (this.pieChart!= null) {
-                PieChart sourcePieChart;
-                sourcePieChart = this.getPieChart();
-                PieChart copyPieChart = ((PieChart) strategy.copy(LocatorUtils.property(locator, "pieChart", sourcePieChart), sourcePieChart));
-                copy.setPieChart(copyPieChart);
+            if ((this.y!= null)&&(!this.y.isEmpty())) {
+                List<String> sourceY;
+                sourceY = (((this.y!= null)&&(!this.y.isEmpty()))?this.getY():null);
+                @SuppressWarnings("unchecked")
+                List<String> copyY = ((List<String> ) strategy.copy(LocatorUtils.property(locator, "y", sourceY), sourceY));
+                copy.y = null;
+                if (copyY!= null) {
+                    List<String> uniqueYl = copy.getY();
+                    uniqueYl.addAll(copyY);
+                }
             } else {
-                copy.pieChart = null;
+                copy.y = null;
             }
             if ((this.labels!= null)&&(!this.labels.isEmpty())) {
                 List<String> sourceLabels;
@@ -267,12 +314,20 @@ public class PieChartResult
             } else {
                 copy.labels = null;
             }
+            if (this.name!= null) {
+                String sourceName;
+                sourceName = this.getName();
+                String copyName = ((String) strategy.copy(LocatorUtils.property(locator, "name", sourceName), sourceName));
+                copy.setName(copyName);
+            } else {
+                copy.name = null;
+            }
         }
         return draftCopy;
     }
 
     public Object createNewInstance() {
-        return new PieChartResult();
+        return new Serie();
     }
 
 }

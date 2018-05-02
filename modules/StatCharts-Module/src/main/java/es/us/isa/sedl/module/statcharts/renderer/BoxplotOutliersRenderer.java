@@ -5,11 +5,11 @@
  */
 package es.us.isa.sedl.module.statcharts.renderer;
 
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.BoxPlotResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Outlier;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.SerieBox;
 import java.util.Locale;
 import org.stringtemplate.v4.AttributeRenderer;
-import statcharts.es.us.isa.sedl.module.statcharts.BoxPlotResult;
-import statcharts.es.us.isa.sedl.module.statcharts.Outlier;
-import statcharts.es.us.isa.sedl.module.statcharts.SerieBox;
 
 /**
  *

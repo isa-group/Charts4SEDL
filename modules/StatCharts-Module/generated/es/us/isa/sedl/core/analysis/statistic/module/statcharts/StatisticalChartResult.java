@@ -2,17 +2,17 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.04.30 a las 12:47:30 PM CEST 
+// Generado el: 2018.05.03 a las 01:40:01 AM CEST 
 //
 
 
-package statcharts.es.us.isa.sedl.module.statcharts;
+package es.us.isa.sedl.core.analysis.statistic.module.statcharts;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import es.us.isa.sedl.core.analysis.statistic.Statistic;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisResult;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
 import org.jvnet.jaxb2_commons.lang.Equals;
@@ -26,14 +26,14 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 
 
 /**
- * <p>Clase Java para StatisticalChart complex type.
+ * <p>Clase Java para StatisticalChartResult complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="StatisticalChart">
+ * &lt;complexType name="StatisticalChartResult">
  *   &lt;complexContent>
- *     &lt;extension base="{http://isa.us.es/sedl/core/analysis/statistic}Statistic">
+ *     &lt;extension base="{http://isa.us.es/sedl/core/analysis/statistic}StatisticalAnalysisResult">
  *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -42,21 +42,21 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "StatisticalChart")
+@XmlType(name = "StatisticalChartResult")
 @XmlSeeAlso({
-    Histogram.class,
-    ScatterPlot.class,
-    BoxPlot.class,
-    PieChart.class
+    HistogramResult.class,
+    PieChartResult.class,
+    BoxPlotResult.class,
+    ScatterPlotResult.class
 })
-public class StatisticalChart
-    extends Statistic
+public class StatisticalChartResult
+    extends StatisticalAnalysisResult
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof StatisticalChart)) {
+        if (!(object instanceof StatisticalChartResult)) {
             return false;
         }
         if (this == object) {
@@ -99,7 +99,7 @@ public class StatisticalChart
     }
 
     public Object createNewInstance() {
-        return new StatisticalChart();
+        return new StatisticalChartResult();
     }
 
 }

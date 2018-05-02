@@ -5,16 +5,15 @@
  */
 package es.us.isa.sedl.module.statcharts.renderer;
 
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.BoxPlotResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.HistogramResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.StatisticalChartResult;
 import java.util.UUID;
 import org.apache.commons.math3.distribution.NormalDistribution;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
-import statcharts.es.us.isa.sedl.module.statcharts.BoxPlotResult;
-import statcharts.es.us.isa.sedl.module.statcharts.HistogramResult;
-import statcharts.es.us.isa.sedl.module.statcharts.PieChartResult;
-import statcharts.es.us.isa.sedl.module.statcharts.ScatterPlotResult;
-import statcharts.es.us.isa.sedl.module.statcharts.StatisticalChartResult;
+
 
 /**
  *

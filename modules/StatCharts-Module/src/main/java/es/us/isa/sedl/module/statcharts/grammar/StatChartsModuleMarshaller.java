@@ -5,6 +5,7 @@
  */
 package es.us.isa.sedl.module.statcharts.grammar;
 
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.StatisticalChart;
 import es.us.isa.sedl.core.design.Group;
 import es.us.isa.sedl.marshaller.renderers.GroupRenderer;
 import es.us.isa.sedl.module.SEDLModuleMarshaller;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroupFile;
-import statcharts.es.us.isa.sedl.module.statcharts.StatisticalChart;
+
 
 
 public class StatChartsModuleMarshaller implements SEDLModuleMarshaller<StatisticalChart>{

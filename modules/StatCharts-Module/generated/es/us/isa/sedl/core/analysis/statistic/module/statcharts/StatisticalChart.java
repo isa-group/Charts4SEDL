@@ -2,15 +2,17 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.04.30 a las 12:47:30 PM CEST 
+// Generado el: 2018.05.03 a las 01:40:01 AM CEST 
 //
 
 
-package statcharts.es.us.isa.sedl.module.statcharts;
+package es.us.isa.sedl.core.analysis.statistic.module.statcharts;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
+import es.us.isa.sedl.module.statchart.AbstractStatisticalChart;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
 import org.jvnet.jaxb2_commons.lang.Equals;
@@ -24,14 +26,14 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 
 
 /**
- * <p>Clase Java para BoxPlot complex type.
+ * <p>Clase Java para StatisticalChart complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="BoxPlot">
+ * &lt;complexType name="StatisticalChart">
  *   &lt;complexContent>
- *     &lt;extension base="{http:///StatCharts/es/us/isa/sedl/module/statcharts.ecore}StatisticalChart">
+ *     &lt;extension base="{http://isa.us.es/sedl/core/analysis/statistic}Statistic">
  *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,15 +42,21 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BoxPlot")
-public class BoxPlot
-    extends StatisticalChart
+@XmlType(name = "StatisticalChart")
+@XmlSeeAlso({
+    Histogram.class,
+    ScatterPlot.class,
+    BoxPlot.class,
+    PieChart.class
+})
+public class StatisticalChart
+    extends AbstractStatisticalChart
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof BoxPlot)) {
+        if (!(object instanceof StatisticalChart)) {
             return false;
         }
         if (this == object) {
@@ -91,7 +99,7 @@ public class BoxPlot
     }
 
     public Object createNewInstance() {
-        return new BoxPlot();
+        return new StatisticalChart();
     }
 
 }

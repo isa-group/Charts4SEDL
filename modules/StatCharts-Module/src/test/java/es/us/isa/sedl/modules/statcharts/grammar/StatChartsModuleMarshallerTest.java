@@ -8,12 +8,12 @@ package es.us.isa.sedl.modules.statcharts.grammar;
 import es.us.isa.sedl.module.statcharts.grammar.StatChartsModuleMarshaller;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import es.us.isa.sedl.core.analysis.datasetspecification.ValuationFilter;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Histogram;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.StatisticalChart;
 import es.us.isa.sedl.core.design.ControllableFactor;
 import es.us.isa.sedl.core.design.VariableValuation;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import statcharts.es.us.isa.sedl.module.statcharts.Histogram;
-import statcharts.es.us.isa.sedl.module.statcharts.StatisticalChart;
 
 /**
  *

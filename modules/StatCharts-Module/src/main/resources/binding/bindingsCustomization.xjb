@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"            
+            xsd:schemaLocation="http://java.sun.com/xml/ns/jaxb 
+                                http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+            xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+            version="2.0">        
+    <globalBindings>        
+        <javaType name="java.util.Date" xmlType="xsd:dateTime"
+            parseMethod="es.us.isa.sedl.core.util.xml.XsdDateTimeConverter.unmarshal"
+            printMethod="es.us.isa.sedl.core.util.xml.XsdDateTimeConverter.marshalDateTime" />
+        <javaType name="java.util.Date" xmlType="xsd:date"
+            parseMethod="es.us.isa.sedl.core.util.xml.XsdDateTimeConverter.unmarshal"
+            printMethod="es.us.isa.sedl.core.util.xml.XsdDateTimeConverter.marshalDate"     />
+        <!--<serializable uid="-4323643255422100" />
+        <superClass name="es.us.isa.moses.sedl.core.domain.DomainEntity" />       -->
+    </globalBindings>
+    <!--
+    <bindings node="xsd:complexType[@name='SEDLEntity']">
+            <inheritance:extends>es.us.isa.moses.sedlcore.DomainEntity</inheritance:extends>
+    </bindings>    -->
+    <bindings schemaLocation="../../../../../StatCharts-MetaModel/src/main/resources/schemas/StatCharts.es.us.isa.sedl.module.statcharts.xsd">
+        <bindings node="/xsd:schema/xsd:complexType[@name='StatisticalChart']">        
+            <inheritance:extends>es.us.isa.sedl.module.statchart.AbstractStatisticalChart</inheritance:extends>        
+        </bindings>                  
+    </bindings>
+    
+</bindings>

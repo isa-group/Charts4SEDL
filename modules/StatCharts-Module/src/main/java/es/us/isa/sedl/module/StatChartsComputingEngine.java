@@ -12,6 +12,18 @@ import es.us.isa.sedl.analysis.operations.information.computestats.engine.Descri
 import es.us.isa.sedl.analysis.operations.information.computestats.engine.StatisticComputingEnginePlugin;
 import es.us.isa.sedl.core.analysis.statistic.Statistic;
 import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.BoxPlot;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.BoxPlotResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Histogram;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.HistogramResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Outlier;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.PieChart;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.PieChartResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.ScatterPlot;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.ScatterPlotResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Serie;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.SerieBox;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.StatisticalChart;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -20,18 +32,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import statcharts.es.us.isa.sedl.module.statcharts.BoxPlot;
-import statcharts.es.us.isa.sedl.module.statcharts.BoxPlotResult;
-import statcharts.es.us.isa.sedl.module.statcharts.Histogram;
-import statcharts.es.us.isa.sedl.module.statcharts.HistogramResult;
-import statcharts.es.us.isa.sedl.module.statcharts.Outlier;
-import statcharts.es.us.isa.sedl.module.statcharts.PieChart;
-import statcharts.es.us.isa.sedl.module.statcharts.PieChartResult;
-import statcharts.es.us.isa.sedl.module.statcharts.ScatterPlot;
-import statcharts.es.us.isa.sedl.module.statcharts.ScatterPlotResult;
-import statcharts.es.us.isa.sedl.module.statcharts.Serie;
-import statcharts.es.us.isa.sedl.module.statcharts.SerieBox;
-import statcharts.es.us.isa.sedl.module.statcharts.StatisticalChart;
 
 /**
  *

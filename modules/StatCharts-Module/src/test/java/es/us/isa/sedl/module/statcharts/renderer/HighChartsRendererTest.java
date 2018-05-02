@@ -5,17 +5,17 @@
  */
 package es.us.isa.sedl.module.statcharts.renderer;
 
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.BoxPlot;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.BoxPlotResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Histogram;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.HistogramResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Outlier;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.ScatterPlot;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.ScatterPlotResult;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Serie;
+import es.us.isa.sedl.core.analysis.statistic.module.statcharts.SerieBox;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import statcharts.es.us.isa.sedl.module.statcharts.BoxPlot;
-import statcharts.es.us.isa.sedl.module.statcharts.BoxPlotResult;
-import statcharts.es.us.isa.sedl.module.statcharts.Histogram;
-import statcharts.es.us.isa.sedl.module.statcharts.HistogramResult;
-import statcharts.es.us.isa.sedl.module.statcharts.Outlier;
-import statcharts.es.us.isa.sedl.module.statcharts.ScatterPlot;
-import statcharts.es.us.isa.sedl.module.statcharts.ScatterPlotResult;
-import statcharts.es.us.isa.sedl.module.statcharts.Serie;
-import statcharts.es.us.isa.sedl.module.statcharts.SerieBox;
 
 /**
  *

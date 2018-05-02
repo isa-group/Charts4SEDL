@@ -7,7 +7,7 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>./../../pom.xml</relativePath>
     </parent>
-    <groupId>es.us.isa.sedl.modules.</groupId>
+    <groupId>es.us.isa.sedl.modules</groupId>
     <artifactId>Charts4SEDL-Module</artifactId>    
     <name>Charts for SEDL Module</name>	
         
@@ -244,9 +244,69 @@
                         <configuration>
                             <filesets>
                                 <fileset>
-                                    <directory>${basedir}/generated/es/us/isa/sedl/core/</directory>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core</directory>
+                                    <includes>
+                                        <include>*.java</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/execution</directory>
                                     <includes>
                                         <include>**</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/hypothesis</directory>
+                                    <includes>
+                                        <include>**</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/classification</directory>
+                                    <includes>
+                                        <include>**</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/design</directory>
+                                    <includes>
+                                        <include>**</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/context</directory>
+                                    <includes>
+                                        <include>**</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/configuration</directory>
+                                    <includes>
+                                        <include>**</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/configuration</directory>
+                                    <includes>
+                                        <include>**</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/analysis/datasetspecification</directory>
+                                    <includes>
+                                        <include>**</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/analysis</directory>
+                                    <includes>
+                                        <include>*.java</include>                                                
+                                    </includes>                    
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/generated/es/us/isa/sedl/core/analysis/statistic</directory>
+                                    <includes>
+                                        <include>*.java</include>                                                
                                     </includes>                    
                                 </fileset>
                             </filesets>

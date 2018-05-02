@@ -2,11 +2,11 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.04.30 a las 12:47:30 PM CEST 
+// Generado el: 2018.05.03 a las 01:40:01 AM CEST 
 //
 
 
-package statcharts.es.us.isa.sedl.module.statcharts;
+package es.us.isa.sedl.core.analysis.statistic.module.statcharts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="quartiles" type="{http://www.eclipse.org/uml2/5.0.0/Types}Real" maxOccurs="unbounded"/>
- *         &lt;element name="outliers" type="{http:///StatCharts/es/us/isa/sedl/module/statcharts.ecore}Outlier" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="outliers" type="{http:///isa.us.es/sedl/core/analysis/statistic/module/statcharts.ecore}Outlier" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="standardDeviation" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}Real" />
  *       &lt;attribute name="name" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" />
