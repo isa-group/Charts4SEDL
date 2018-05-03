@@ -17,6 +17,7 @@ import es.us.isa.sedl.core.design.AnalysisSpecification;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.util.Error;
+import es.us.isa.sedl.error.SEDL4PeopleError;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser;
 import es.us.isa.sedl.marshaller.SEDL4PeopleExtendedListener;
 import es.us.isa.sedl.module.SEDLModuleUnmarshaller;
@@ -121,25 +122,33 @@ public class StatChartsModuleUnmarshaller extends StatChartsBaseListener impleme
             abc = (SEDL4PeopleParser.AnalysesBlockContext) element.getContext().getParent().getParent();
             specName = abc.id().getText();
         }
-        StatisticalAnalysisSpec spec = findAnalysisSpec(specName);
-        if (spec != null) {
-            spec.getStatistic().add(chart);
-        } else {
-            result.add(new Error(0, Error.ERROR_SEVERITY.ERROR, "Unable to find statistical analysis specification with id='" + element.getElementIdentifier() + "'"));
-        }
+        
+        AnalysisSpecificationGroup aspec=findAnalysisSpecificationGroup(element,experiment);        
+        if(aspec!=null && chart!=null){
+            StatisticalAnalysisSpec sas=new StatisticalAnalysisSpec();
+            sas.getStatistic().add(chart);
+            aspec.getAnalyses().add(sas);
+        }else{
+            Error e=new SEDL4PeopleError(element.getContext().start.getLine(), 
+                                            element.getContext().start.getStartIndex(), element.getContext().stop.getStopIndex(), Error.ERROR_SEVERITY.ERROR, 
+                                            "Unable to find the analysis group to which the chart should be added");
+            result.add(e);
+        }        
         return result;
     }
-
-    private StatisticalAnalysisSpec findAnalysisSpec(String elementIdentifier) {
-        StatisticalAnalysisSpec spec = null;
-        for (AnalysisSpecificationGroup candidateGroup : experiment.getDesign().getExperimentalDesign().getIntendedAnalyses()) {
-            for(AnalysisSpecification candidate: candidateGroup.getAnalyses()){
-                if (candidate.getId().equals(elementIdentifier) && candidate instanceof StatisticalAnalysisSpec) {
-                    spec = (StatisticalAnalysisSpec) candidate;
-                    break;
-                }
+    
+    private AnalysisSpecificationGroup findAnalysisSpecificationGroup(ExtensionPointElement element, Experiment experiment) {
+        AnalysisSpecificationGroup aspec=null;
+        List<AnalysisSpecificationGroup> analysisGroups=((BasicExperiment)experiment).getDesign().getExperimentalDesign().getIntendedAnalyses();
+        String analysisGroupID=null;
+        if(element.getExtensionPointLocator()!=null && !element.getExtensionPointLocator().isEmpty())
+            analysisGroupID=element.getExtensionPointLocator().get(0);
+        if(analysisGroupID!=null && analysisGroups!=null && !analysisGroups.isEmpty()){            
+            for(AnalysisSpecificationGroup ag:analysisGroups){
+                if(analysisGroupID.equals(ag.getId()))
+                    aspec=ag;
             }
         }
-        return spec;
+        return aspec;
     }
 }

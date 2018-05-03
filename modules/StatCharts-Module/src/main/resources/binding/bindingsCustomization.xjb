@@ -21,7 +21,7 @@
     </bindings>    -->
     <bindings schemaLocation="../../../../../StatCharts-MetaModel/src/main/resources/schemas/StatCharts.es.us.isa.sedl.module.statcharts.xsd">
         <bindings node="/xsd:schema/xsd:complexType[@name='StatisticalChart']">        
-            <inheritance:extends>es.us.isa.sedl.module.statchart.AbstractStatisticalChart</inheritance:extends>        
+            <inheritance:extends>es.us.isa.sedl.core.analysis.statistic.module.statcharts.AbstractStatisticalChart</inheritance:extends>        
         </bindings>                  
     </bindings>
     

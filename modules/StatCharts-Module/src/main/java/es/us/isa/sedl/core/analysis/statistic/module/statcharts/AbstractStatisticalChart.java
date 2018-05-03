@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.us.isa.sedl.module.statchart;
+package es.us.isa.sedl.core.analysis.statistic.module.statcharts;
 
 import es.us.isa.sedl.core.analysis.statistic.Statistic;
 import es.us.isa.sedl.module.marshaller.StatChartsMarshaller;
