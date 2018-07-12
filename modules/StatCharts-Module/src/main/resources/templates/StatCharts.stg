@@ -2,10 +2,33 @@ delimiters "$", "$"
 
 import "templates/SEDL.stg"
 
-Histogram(s)::="Histogram $if(s.nBins)$  nBins=$s.nBins$ $endif$ $datasetSpecification(s.datasetSpecification)$"
+Histogram(s)::="Histogram $if(s.nBins)$  nBins=$s.nBins$ $endif$ $dataSetSpecification(s.datasetSpecification)$"
 
-ScatterPlot(s)::="ScatterPlot $datasetSpecification(s.datasetSpecification)$"
+ScatterPlot(s)::="ScatterPlot $dataSetSpecification(s.datasetSpecification)$"
 
-PieChart(s)::="PieChart $datasetSpecification(s.datasetSpecification)$"
+PieChart(s)::="PieChart $dataSetSpecification(s.datasetSpecification)$"
 
-BoxPlot(s)::="BoxPlot $datasetSpecification(s.datasetSpecification)$"
+BoxPlot(s)::="BoxPlot $dataSetSpecification(s.datasetSpecification)$"
+
+dataSetSpecification(dss)::=<%
+    
+    $dss.projections:projection()$
+    
+    $dss.filters:filter()$
+%>
+
+dot(o)::="."
+
+filter(f)::="$(f.class.simpleName)(f)$ "
+
+ValuationFilter(vf)::=<<$if(vf.variableValuations)$where $vf.variableValuations:assignment();separator=","$$endif$>>
+
+GroupFilter(gf)::=<<by $gf.group$>>
+
+assignment(v)::="$v.variable.name$$if(v.level)$=$v.level.value$$endif$"
+
+projection(p)::="$(p.class.simpleName)(p)$ "
+
+GroupingProjection(gp)::=<< by $gp.projectedVariables;separator=","$>>
+
+Projection(p)::=<< of $p.projectedVariables;separator=","$>>

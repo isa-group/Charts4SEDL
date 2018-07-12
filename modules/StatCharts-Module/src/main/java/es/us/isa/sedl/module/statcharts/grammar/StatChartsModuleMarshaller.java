@@ -15,6 +15,8 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroupFile;
 
@@ -38,7 +40,8 @@ public class StatChartsModuleMarshaller implements SEDLModuleMarshaller<Statisti
         STGroupFile group=new STGroupFile("templates/StatCharts.stg");
         group.registerRenderer(Group.class, GroupRenderer.getInstance());
         ST template=group.getInstanceOf("statistic");
-        template.add("s",extensionPointRealization);        
+        template.add("s",extensionPointRealization);      
+        //template.inspect().open();        
         return modulePrefix+"::"+template.render();
     }
     

@@ -1,41 +1,11 @@
 
 dinamicLoadingFunction(identifier)::=<<
-function loadHighCharts<identifier>() {
-    var Highcharts;
-    /********  Dynamically load up highcharts *********/
-    if (window.Highcharts === undefined) {
-        var script_tag1 = document.createElement('script');
-        script_tag1.setAttribute("type", "text/javascript");
-        script_tag1.setAttribute("src",
-            "https://code.highcharts.com/highcharts.js");
-        script_tag1.onload=function(){
-        var script_tag2 = document.createElement('script');
-        script_tag2.setAttribute("type", "text/javascript");
-        script_tag2.setAttribute("src",
-            "https://code.highcharts.com/highcharts-more.js");
-        script_tag2.onload=function(){
-        var script_tag3 = document.createElement('script');
-        script_tag3.setAttribute("type", "text/javascript");
-        script_tag3.setAttribute("src",
-            "https://code.highcharts.com/modules/exporting.js");
-        script_tag3.onload = printChart<identifier>;
-        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag3);
-        };
-        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag2);
-        };                
-        // Try to find the head, otherwise default to the documentElement
-        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag1);                
-    } else {
-        printChart<identifier>();
-        //  script_tag.setAttribute("src","https://code.highcharts.com/modules/exporting.js");
-    }
-}
-
 function transpose<identifier>(a) {
     return Object.keys(a[0]).map(
         function (c) { return a.map(function (r) { return r[c]; }); }
         );
     }
+printChart<identifier>();
 >>
 
 Histogram(result,identifier,normal)::=<<
@@ -198,6 +168,7 @@ function printChart<identifier>(){
                 plotOptions: {
                     series: {
                         minPointLength: 1,
+                        animation: false,
                         shadow: false,
                         marker: {
                             enabled: false

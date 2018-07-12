@@ -33,15 +33,18 @@ public class HighChartsRenderer extends AbstractChartsRenderer {
     
     protected String render(StatisticalChartResult result,String chartType) {
         String identifier = UUID.randomUUID().toString().replace("-", "");
-        StringBuilder sb = new StringBuilder("<div id=\"" + identifier + "\"/>\n");
+        StringBuilder sb = new StringBuilder("<div id=\"" + identifier + "\"/>\n");         
         sb.append("<script type=\"text/javascript\">\n");
-        // This line tells Chrome to interpret this dinamically loaded javascrit
-        // as a file (useful for debugging).
         sb.append("//@ sourceURL=renderChart"+identifier+".js \n");
-        sb.append(generateDinamicLoadingFunction(identifier));
-        sb.append(generateRenderingFunction(result,identifier,chartType));
-        sb.append("\nloadHighCharts"+identifier+"();\n");
+        sb.append(generateRenderingFunction(result,identifier,chartType));        
         sb.append("</script>\n");
+        sb.append("<script type=\"text/javascript\">\n");
+        sb.append("//@ sourceURL=loadChart.js \n");
+        // This line tells Chrome to interpret this dinamically loaded javascrit
+        // as a file (useful for debugging).        
+        sb.append(generateDinamicLoadingFunction(identifier));        
+        sb.append("</script>\n");
+        
         return sb.toString();
     }    
     private String generateDinamicLoadingFunction(String identifier) {
