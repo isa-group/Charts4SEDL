@@ -55,12 +55,17 @@ public class HighChartsRenderer extends AbstractChartsRenderer {
 
     private String generateRenderingFunction(StatisticalChartResult result,String 
             identifier,String chartType) {
-        ST st=group.getInstanceOf(chartType);
-        st.add("identifier", identifier);
-        if(result instanceof HistogramResult)
-            st.add("normal",generateNormalDistribution((HistogramResult)result));
-        st.add("result", result);
-        return st.render();
+        String renderResult="";
+        ST st=group.getInstanceOf(chartType);        
+        if(st!=null){
+            st.add("identifier", identifier);
+            if(result instanceof HistogramResult)
+                st.add("normal",generateNormalDistribution((HistogramResult)result));
+            st.add("result", result);
+            renderResult=st.render();
+        }else
+            renderResult="[ERROR] Unable to render Chart of type '"+chartType+"' rendering template not found!";
+        return renderResult;
     }        
 
     private String [][] generateNormalDistribution(HistogramResult histogramResult) {

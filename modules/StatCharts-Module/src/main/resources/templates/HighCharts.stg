@@ -143,15 +143,7 @@ var plotBands<identifier> = [{
 <endif>
 
 function printChart<identifier>(){
-    var chart;    
-        /******* Load CSS ******
-        var css_link = $("\<link\>", { 
-            rel: "stylesheet", 
-            type: "text/css", 
-            href: "style.css" 
-        });
-        css_link.appendTo('head');          
-        **************************/
+    var chart;            
         /******* Load HTML *******/
             chart = new Highcharts.Chart({                 
                 chart: {
@@ -351,15 +343,7 @@ function toggleBands<identifier>(chart) {
 
 BoxPlot(result,identifier)::=<<
 function printChart<identifier>(){
-    var chart;    
-        /******* Load CSS ******
-        var css_link = $("\<link>", { 
-            rel: "stylesheet", 
-            type: "text/css", 
-            href: "style.css" 
-        });
-        css_link.appendTo('head');          
-        ************************/
+    var chart;            
         /******* Load HTML *******/
             chart = new Highcharts.Chart({                 
                 chart: {
@@ -368,11 +352,17 @@ function printChart<identifier>(){
                         },
                     backgroundColor: '#FFFFFF',
                     zoomType: 'xy',
+                    animation: false,
                     type: 'boxplot',
                     marginLeft: 40,
                     marginRight: 40,
                     marginBottom: 40
-                },                                
+                },
+                plotOptions: {
+                   series: {
+                        animation: false
+                    }
+                },
                  title: {
                      text: 'BoxPlot of <result.histogram.datasetSpecification.projections:{x|<x.projectedVariables>}>',
                      x: -5,
@@ -445,15 +435,7 @@ point(p)::=<<
 
 ScatterPlot(result,identifier)::=<<
 function printChart<identifier>(){
-    var chart;    
-        /******* Load CSS ******
-        var css_link = $("\<link>", { 
-            rel: "stylesheet", 
-            type: "text/css", 
-            href: "style.css" 
-        });
-        css_link.appendTo('head');          
-        ************************/
+    var chart;           
         /******* Load HTML *******/
             chart = new Highcharts.Chart({                 
                 chart: {
@@ -466,7 +448,12 @@ function printChart<identifier>(){
                     marginLeft: 40,
                     marginRight: 40,
                     marginBottom: 40
-                },                                
+                }, 
+                plotOptions: {
+                    series: {
+                        animation: false
+                },
+                },                               
                  title: {
                      text: 'BoxPlot of <result.histogram.datasetSpecification.projections:{x|<x.projectedVariables>}>',
                      x: -5,
