@@ -5,17 +5,17 @@
  */
 package es.us.isa.sedl.module.marshaller;
 
-import es.us.isa.sedl.core.BasicExperiment;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.ControlledExperiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.ExtensionPointElement;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.analysis.statistic.module.statcharts.BoxPlot;
 import es.us.isa.sedl.core.analysis.statistic.module.statcharts.Histogram;
 import es.us.isa.sedl.core.analysis.statistic.module.statcharts.PieChart;
 import es.us.isa.sedl.core.analysis.statistic.module.statcharts.ScatterPlot;
 import es.us.isa.sedl.core.analysis.statistic.module.statcharts.StatisticalChart;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
-import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.util.Error;
 import es.us.isa.sedl.error.SEDL4PeopleError;
 import es.us.isa.sedl.marshaller.analysis.statistic.DatasetSpecificationParser;
@@ -40,7 +40,7 @@ public class StatChartsUnmarshaller implements SEDLModuleUnmarshaller {
     
             
     @Override
-    public Collection<? extends Error> unmarshall(ExtensionPointElement element, Experiment experiment) {
+    public Collection<? extends Error> unmarshall(ExtensionPointElement element, EmpiricalStudy experiment) {
         List<Error> result=new ArrayList<Error>();
         String content=element.getContent();
         int index=content.indexOf(" ");        
@@ -62,9 +62,14 @@ public class StatChartsUnmarshaller implements SEDLModuleUnmarshaller {
         chart.setDatasetSpecification(dss);
         AnalysisSpecificationGroup aspec=findAnalysisSpecificationGroup(element,experiment);        
         if(aspec!=null){
-            StatisticalAnalysisSpec sas=new StatisticalAnalysisSpec();
-            sas.getStatistic().add(chart);
-            aspec.getAnalyses().add(sas);
+            if(aspec instanceof StatisticalAnalysisSpec){
+                ((StatisticalAnalysisSpec)aspec).getStatistic().add(chart);
+            }else{
+                StatisticalAnalysisSpec sas=new StatisticalAnalysisSpec();
+                sas.getStatistic().add(chart);
+                ControlledExperiment myexp=(ControlledExperiment)experiment;
+                myexp.getDesign().getExperimentalDesign().getIntendedAnalyses().add(sas);
+            }
         }else{
             Error e=new SEDL4PeopleError(element.getContext().start.getLine(), 
                                             element.getContext().start.getStartIndex(), element.getContext().stop.getStopIndex(), Error.ERROR_SEVERITY.ERROR, 
@@ -74,9 +79,9 @@ public class StatChartsUnmarshaller implements SEDLModuleUnmarshaller {
         return result;
     }
     
-    private AnalysisSpecificationGroup findAnalysisSpecificationGroup(ExtensionPointElement element, Experiment experiment) {
+    private AnalysisSpecificationGroup findAnalysisSpecificationGroup(ExtensionPointElement element, EmpiricalStudy experiment) {
         AnalysisSpecificationGroup aspec=null;
-        List<AnalysisSpecificationGroup> analysisGroups=((BasicExperiment)experiment).getDesign().getExperimentalDesign().getIntendedAnalyses();
+        List<AnalysisSpecificationGroup> analysisGroups=((ControlledExperiment)experiment).getDesign().getExperimentalDesign().getIntendedAnalyses();
         String analysisGroupID=null;
         if(element.getExtensionPointLocator()!=null && !element.getExtensionPointLocator().isEmpty())
             analysisGroupID=element.getExtensionPointLocator().get(0);
