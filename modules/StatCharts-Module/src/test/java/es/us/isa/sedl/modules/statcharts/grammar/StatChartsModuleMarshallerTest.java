@@ -64,10 +64,10 @@ public class StatChartsModuleMarshallerTest {
         ControllableFactor factor1=new ControllableFactor();
         factor1.setName("factor1");
         VariableValuation vv=new VariableValuation();
-        vv.setVariable(factor1);
+        vv.setVariable(factor1.getName());
         Level l=new Level();
         l.setValue("1");
-        vv.setLevel(l);
+        vv.setLevel(l.getValue());
         ValuationFilter f=new ValuationFilter();
         f.getVariableValuations().add(vv);
         result.getFilters().add(f);        

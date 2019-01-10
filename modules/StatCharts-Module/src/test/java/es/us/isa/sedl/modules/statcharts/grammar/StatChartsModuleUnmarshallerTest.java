@@ -13,12 +13,12 @@ import java.util.Collections;
 
 import org.junit.Test;
 
-import es.us.isa.sedl.core.BasicExperiment;
+import es.us.isa.sedl.core.ControlledExperiment;
 import es.us.isa.sedl.core.ExtensionPointElement;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.Design;
 import es.us.isa.sedl.core.design.FullySpecifiedExperimentalDesign;
-import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.util.Error;
 
 /**
@@ -37,26 +37,23 @@ public class StatChartsModuleUnmarshallerTest {
     public void testUnmarshall() {
         System.out.println("unmarshall");
         ExtensionPointElement element = new ExtensionPointElement("chart", "Analysis", "Histogram",null);
-        BasicExperiment experiment = createExperiment();
+        ControlledExperiment experiment = createExperiment();
         StatChartsModuleUnmarshaller instance = new StatChartsModuleUnmarshaller();
         Collection<? extends Error> expResult = Collections.EMPTY_LIST;
         Collection<? extends Error> result = instance.unmarshall(element, experiment);
-        assertEquals(expResult, result);
-        AnalysisSpecificationGroup sa=experiment.getDesign().getExperimentalDesign().getIntendedAnalyses().get(0);
-        assertEquals(sa.getAnalyses().size(),1);        
+        assertEquals(expResult, result);        
+        assertEquals(experiment.getDesign().getExperimentalDesign().getIntendedAnalyses().size(),1);        
         
     }    
 
-    private BasicExperiment createExperiment() {
-        BasicExperiment result=new BasicExperiment();
+    private ControlledExperiment createExperiment() {
+        ControlledExperiment result=new ControlledExperiment();
         Design design=new Design();
         FullySpecifiedExperimentalDesign fsed=new FullySpecifiedExperimentalDesign();
         design.setExperimentalDesign(fsed);
         result.setDesign(design);
-        StatisticalAnalysisSpec as=new StatisticalAnalysisSpec();
-        AnalysisSpecificationGroup ag=new AnalysisSpecificationGroup();
-        ag.getAnalyses().add(as);
-        fsed.getIntendedAnalyses().add(ag);
+        StatisticalAnalysisSpec as=new StatisticalAnalysisSpec();                
+        fsed.getIntendedAnalyses().add(as);
         as.setId("Analysis");
         return result;
     }
